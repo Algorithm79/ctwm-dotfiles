@@ -1,0 +1,220 @@
+DontShowWelcomeWindow
+NoGrabServer
+RestartPreviousState
+DecorateTransients
+DontMoveOff
+RandomPlacement
+NoOpaqueResize
+IconifyByUnmapping
+MoveDelta 5
+NoSortIconManager
+AutoFocusToTransients
+NoMenuShadows
+StayUpMenus
+NoTitleHighlight
+
+UseThreeDMenus
+UseThreeDTitles
+UseThreeDIconManagers
+UseThreeDBorders
+UseThreeDWMap
+#SunkFocusWindowTitle
+TitleJustification center
+
+# Fonts
+TitleFont       "-*-helvetica-bold-r-normal-*-14-*-*-*-*-*-iso10646-1"
+ResizeFont      "-*-helvetica-bold-r-normal-*-14-*-*-*-*-*-iso10646-1"
+MenuFont        "-*-helvetica-bold-r-normal-*-14-*-*-*-*-*-iso10646-1"
+IconFont        "-*-helvetica-bold-r-normal-*-14-*-*-*-*-*-iso10646-1"
+IconManagerFont "-*-helvetica-bold-r-normal-*-14-*-*-*-*-*-iso10646-1"
+
+# Colors
+Color {
+  TitleBackground       "#1a1b26"
+  TitleForeground       "#AFB8C5"
+  BorderColor           "#292e38"
+  BorderTileBackground  "#292e38"
+  BorderTileForeground  "#AFB8C5"
+
+  MenuBackground        "#1a1b26"
+  MenuForeground        "#AFB8C5"
+  MenuTitleBackground   "#292e38"
+  MenuTitleForeground   "#AFB8C5"
+
+  IconManagerBackground "#1a1b26"
+  IconManagerForeground "#AFB8C5"
+}
+
+# Handle Window ring
+WindowRing
+WindowRingExclude {
+  "xclock"
+}
+
+# Cursors
+Cursors {
+  Frame       "left_ptr"
+  Title       "left_ptr"
+  Icon        "left_ptr"
+  IconMgr     "hand2"
+  Move        "fleur"
+  Resize      "iron_cross"
+  Menu        "sb_left_arrow"
+  Button      "hand2"
+  Wait        "watch"
+  Select      "dot"
+  Destroy     "pirate"
+}
+
+# Icon Manager
+IconRegion "140x684+0+0" North East 130 90 { }
+IconRegion "140x684+140+0" North East 130 90 { }
+ShowIconManager
+IconManagerGeometry "968x20+0-0" 9
+IconManagerDontShow {
+  "gkrellm"
+  "xclock"
+  "stalonetray"
+  "xload"
+  "sysinf2"
+  "conky"
+}
+
+# Turn off some window titles
+NoTitle {
+  "TWM Icon Manager"
+  "xclock"
+  "feh"
+  "xeyes"
+}
+
+# Custom functions
+Function "move-and-raise" {
+  f.move
+  f.deltastop
+  f.raise
+}
+Function "deiconify-and-raise" {
+  f.deiconify
+  f.raise
+}
+Function "next-and-raise" {
+  f.downiconmgr
+  f.raise
+}
+
+# Turn off default iconify and resize button
+NoDefaults
+LeftTitleButton  ":xpm:bar"    = f.menu "winmops"
+RightTitleButton ":xpm:dot"    = f.iconify
+RightTitleButton ":xpm:box"    = f.zoom
+RightTitleButton ":xpm:resize" = f.resize
+
+# Mouse bindings
+Button3 = : root : f.menu "defops"
+Button1 = : root : f.menu "apps"
+Button2 = : root : f.menu "TwmWindows"
+
+Button1 = : title : f.function "move-and-raise"
+Button2 = : title : f.iconify
+Button3 = : title : f.raiselower
+
+Button1 = : frame : f.function "move-and-raise"
+Button2 = : frame : f.resize
+Button3 = : frame : f.raiselower
+
+Button1 = : iconmgr : f.function "deiconify-and-raise"
+Button2 = : iconmgr : f.lower
+Button3 = : iconmgr : f.iconify
+
+# Keyboard Bindings
+"F1"  = m4 : all : f.fullzoom
+"F2"  = m4 : all : f.zoom
+"Tab" = m   : all : f.warpring "next"
+"Tab" = m|s : all : f.warpring "prev"
+"z"  = m4fire : all : f.exec "xfce4-appfinder &"
+"Return"  = m4fire : all : f.exec "kitty &"
+"q" = m4fire : window : f.delete
+
+# Volume Controls
+"XF86AudioRaiseVolume" = : all : f.exec "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+"XF86AudioLowerVolume" = : all : f.exec "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+"XF86AudioMute"        = : all : f.exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+
+# Meta key + mouse actions, useful for title-less windows
+Button1 = m4 : window : f.forcemove
+Button3 = m4 : window : f.raiselower
+Button2 = m4 : window : f.resize
+
+# Small menu for window "close" button
+menu "winmops"
+{
+  "Iconify" f.iconify
+  "Close"   f.delete
+}
+
+# System menu
+menu "defops"
+{
+  "System"     f.title
+  "Resize"     f.resize
+  "Move"       f.move
+  ""           f.nop
+  "Kill"       f.destroy
+  "Delete"     f.delete
+  ""           f.nop
+  "Sleep"      f.menu "asksleep"
+  "Restart"    f.restart
+  "Exit"       f.menu "askexit"
+}
+
+# System submenu: Confirm sleep mode
+menu "asksleep"
+{
+  "Sleep?" f.title
+  "No"     f.nop
+  "Yes"    f.exec "loginctl suspend"
+}
+
+# System submenu: Confirm exit
+menu "askexit"
+{
+  "Exit?" f.title
+  "No"    f.nop
+  "Yes"   f.quit
+}
+
+# Workspace Menu (Left click in root)
+menu "apps"
+{
+  "CTWM"     f.title
+  "Terminal"      f.exec "kitty &"
+  "Firefox"       f.exec "firefox &"
+  "File Manager"  f.exec "thunar &"
+  ""              f.nop
+  "Volume Control"   f.exec "pavucontrol &"
+  "HTop"          f.exec "kitty -e htop &"
+  ""              f.nop
+  "Audio"         f.menu "audio"
+  "Applications"  f.menu "miscapps"
+}
+
+
+# Workspace submenu: Misc apps
+menu "miscapps"
+{
+   "Firefox"     f.exec "firefox &"
+   "Mousepad"    f.exec "mousepad &"
+   "Geany"       f.exec "geany &"
+   "Calculator"  f.exec "galculator &"
+}
+
+# Workspace submenu: Audio apps
+menu "audio"
+{
+   "Audacious"    f.exec "audacious &"
+   "cliamp"          f.exec "kitty -e cliamp /home/magnus/Musik &"
+   "mpv"          f.exec "mpv &"
+}
+
+# END twmrc
