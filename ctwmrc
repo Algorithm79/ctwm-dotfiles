@@ -30,7 +30,7 @@ IconManagerFont "-*-helvetica-bold-r-normal-*-14-*-*-*-*-*-iso10646-1"
 
 # Colors
 Color {
-  TitleBackground       "#1a1b26"
+  TitleBackground       "#292e38"
   TitleForeground       "#AFB8C5"
   BorderColor           "#292e38"
   BorderTileBackground  "#292e38"
