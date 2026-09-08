@@ -1,2 +1,5 @@
-xterm*background: #1a1b26
-xterm*foreground: #AFB8C5
+xterm*background: #FFDBE9
+xterm*foreground: #900000
+
+Xcursor.theme: Adwaita
+Xcursor.size: 24

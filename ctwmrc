@@ -1,3 +1,4 @@
+
 DontShowWelcomeWindow
 NoGrabServer
 RestartPreviousState
@@ -12,6 +13,8 @@ AutoFocusToTransients
 NoMenuShadows
 StayUpMenus
 NoTitleHighlight
+#IgnoreModifier { lock m2 }
+FocusOnRoot
 
 UseThreeDMenus
 UseThreeDTitles
@@ -30,19 +33,19 @@ IconManagerFont "-*-helvetica-bold-r-normal-*-14-*-*-*-*-*-iso10646-1"
 
 # Colors
 Color {
-  TitleBackground       "#292e38"
-  TitleForeground       "#AFB8C5"
-  BorderColor           "#292e38"
-  BorderTileBackground  "#292e38"
-  BorderTileForeground  "#AFB8C5"
+  TitleBackground       "#e1e2e7"
+  TitleForeground       "#343b58"
+  BorderColor           "#e1e2e7"
+  BorderTileBackground  "#e1e2e7"
+  BorderTileForeground  "#343b58"
 
-  MenuBackground        "#1a1b26"
-  MenuForeground        "#AFB8C5"
-  MenuTitleBackground   "#292e38"
-  MenuTitleForeground   "#AFB8C5"
+  MenuBackground        "#d0d3db"
+  MenuForeground        "#343b58"
+  MenuTitleBackground   "#e1e2e7"
+  MenuTitleForeground   "#343b58"
 
-  IconManagerBackground "#1a1b26"
-  IconManagerForeground "#AFB8C5"
+  IconManagerBackground "#d0d3db"
+  IconManagerForeground "#343b58"
 }
 
 # Handle Window ring
@@ -72,12 +75,8 @@ IconRegion "140x684+140+0" North East 130 90 { }
 ShowIconManager
 IconManagerGeometry "968x20+0-0" 9
 IconManagerDontShow {
-  "gkrellm"
   "xclock"
   "stalonetray"
-  "xload"
-  "sysinf2"
-  "conky"
 }
 
 # Turn off some window titles
@@ -86,6 +85,7 @@ NoTitle {
   "xclock"
   "feh"
   "xeyes"
+  "stalonetray"
 }
 
 # Custom functions
@@ -132,14 +132,14 @@ Button3 = : iconmgr : f.iconify
 "F2"  = m4 : all : f.zoom
 "Tab" = m   : all : f.warpring "next"
 "Tab" = m|s : all : f.warpring "prev"
-"z"  = m4fire : all : f.exec "xfce4-appfinder &"
+"z"  = m4fire : all : f.exec "rofi -show drun &"
 "Return"  = m4fire : all : f.exec "kitty &"
 "q" = m4fire : window : f.delete
 
 # Volume Controls
-"XF86AudioRaiseVolume" = : all : f.exec "pactl set-sink-volume @DEFAULT_SINK@ +5%"
-"XF86AudioLowerVolume" = : all : f.exec "pactl set-sink-volume @DEFAULT_SINK@ -5%"
-"XF86AudioMute"        = : all : f.exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+"XF86AudioRaiseVolume" = : all : f.exec "controls.sh volume_up"
+"XF86AudioLowerVolume" = : all : f.exec "controls.sh volume_down"
+"XF86AudioMute"        = : all : f.exec "controls.sh volume_mute"
 
 # Meta key + mouse actions, useful for title-less windows
 Button1 = m4 : window : f.forcemove
@@ -164,6 +164,8 @@ menu "defops"
   "Delete"     f.delete
   ""           f.nop
   "Sleep"      f.menu "asksleep"
+  "Reboot"     f.menu "reboot"
+  "Shutdown"   f.menu "shutdown"
   "Restart"    f.restart
   "Exit"       f.menu "askexit"
 }
@@ -171,9 +173,23 @@ menu "defops"
 # System submenu: Confirm sleep mode
 menu "asksleep"
 {
-  "Sleep?" f.title
+  "Suspend?" f.title
   "No"     f.nop
   "Yes"    f.exec "loginctl suspend"
+}
+
+menu "reboot"
+{
+  "Reboot?" f.title
+  "No"     f.nop
+  "Yes"    f.exec "loginctl reboot"
+}
+
+menu "shutdown"
+{
+  "Shutdown?" f.title
+  "No"     f.nop
+  "Yes"    f.exec "loginctl poweroff"
 }
 
 # System submenu: Confirm exit
@@ -195,6 +211,8 @@ menu "apps"
   "Volume Control"   f.exec "pavucontrol &"
   "HTop"          f.exec "kitty -e htop &"
   ""              f.nop
+  "Screenshot"   f.exec "scrot &"
+  ""              f.nop
   "Audio"         f.menu "audio"
   "Applications"  f.menu "miscapps"
 }
@@ -205,7 +223,6 @@ menu "miscapps"
 {
    "Firefox"     f.exec "firefox &"
    "Mousepad"    f.exec "mousepad &"
-   "Geany"       f.exec "geany &"
    "Calculator"  f.exec "galculator &"
 }
 
@@ -213,7 +230,7 @@ menu "miscapps"
 menu "audio"
 {
    "Audacious"    f.exec "audacious &"
-   "cliamp"          f.exec "kitty -e cliamp &"
+   "cliamp"          f.exec "kitty -e cliamp /home/magnus/Musik &"
    "mpv"          f.exec "mpv &"
 }
 
