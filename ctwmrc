@@ -230,7 +230,7 @@ menu "miscapps"
 menu "audio"
 {
    "Audacious"    f.exec "audacious &"
-   "cliamp"          f.exec "kitty -e cliamp /home/magnus/Musik &"
+   "cliamp"          f.exec "kitty -e cliamp &"
    "mpv"          f.exec "mpv &"
 }
 
