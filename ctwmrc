@@ -233,5 +233,3 @@ menu "audio"
    "cliamp"          f.exec "kitty -e cliamp &"
    "mpv"          f.exec "mpv &"
 }
-
-# END twmrc
