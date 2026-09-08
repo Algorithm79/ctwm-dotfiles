@@ -1,0 +1,140 @@
+configuration {
+  display-drun: " ";
+  display-window: " :";
+  display-filebrowser: " ";
+
+  show-icons: true;
+  drun-display-format: "{icon} {name}";
+}
+
+* {
+  font: "CaskaydiaCove Nerd Font 12";
+  icon-font: "CaskaydiaCove Nerd Font Medium 18";
+
+  /* --- Tokyo Night Light & CDE Fusion --- */
+  cde-bg:                      #e1e2e7; /* Tokyo Night Light bas (ljusgrå/blå) */
+  cde-fg:                      #343b58; /* Mörkblå text för hög kontrast */
+  cde-input-bg:                #d0d3db; /* Nedsänkt mörkare ton för sökfältet */
+  
+  /* CDE 3D-Skuggor anpassade för Tokyo Night */
+  cde-high-light:              #ffffff; /* Ren vit för solljus-effekt (topp/vänster) */
+  cde-low-shadow:              #e1e2e7; /* Din önskade färg för den yttre ramen / skuggan (botten/höger) */
+
+  /* Markeringar (Klassisk Tokyo Night Blå) */
+  selected-background:         #343b58; 
+  selected-foreground:         #e1e2e7; 
+}
+
+/* LAGER 1: Fönstrets yttersta mörka skugga (Botten/Höger) */
+window {
+  background-color: @cde-low-shadow;
+  transparency: "real";
+  height: 43%;
+  width: 30%;
+  border-radius: 0px; 
+  
+  border: 4px;
+  border-color: @cde-low-shadow; /* Använder #292e38 här */
+  
+  children: [ mainbox ];
+}
+
+/* LAGER 2: Fönstrets ljusa sida (Topp/Vänster) */
+mainbox {
+  background-color: @cde-high-light;
+  border: 3px;
+  border-color: @cde-high-light;
+  
+  children: [ cde-frame ];
+}
+
+/* LAGER 3: Själva fönsterplattan (Tokyo Night Light bas) */
+cde-frame {
+  background-color: @cde-bg;
+  orientation: vertical;
+  border: 4px;
+  border-color: @cde-bg;
+  
+  children: [ innerbox ];
+}
+
+/* LAGER 4: Innehållsboxen med luft runt elementen */
+innerbox {
+  background-color: transparent;
+  orientation: vertical;
+  padding: 20px;
+  
+  children: [ inputbar, listview ];
+}
+
+/* SÖKFÄLTET: Nedsänkt 3D-effekt */
+inputbar {
+  background-color: @cde-input-bg;
+  padding: 10px;
+  margin: 0px 0px 20px 0px;
+  
+  border: 2px;
+  border-color: @cde-low-shadow;
+  
+  children: [ prompt, entry ];
+}
+
+prompt {
+  background-color: transparent;
+  text-color: @cde-fg; 
+  padding: 0px 10px 0px 0px;
+}
+
+entry {
+  background-color: transparent;
+  text-color: @cde-fg;
+  placeholder: "Sök...";
+  placeholder-color: #9095aa;
+}
+
+listview {
+  background-color: transparent;
+  padding: 0px 5px 0px 5px;
+  spacing: 0.3em;
+  columns: 2;
+  scrollbar: false;
+}
+
+element {
+  background-color: transparent;
+  padding: 6px 6px;
+  border-radius: 0px;
+}
+
+element.normal.normal {
+  background-color: transparent;
+  text-color: @cde-fg;
+}
+
+element.selected.normal {
+  background-color: @selected-background;
+  text-color: @selected-foreground; 
+  
+  border: 1px;
+  border-color: @cde-high-light;
+}
+
+element.alternate.normal {
+  background-color: transparent;
+  text-color: @cde-fg;
+}
+
+element-icon {
+  size: 32px;
+  border: 0px;
+}
+
+element-text {
+  expand: true;
+  vertical-align: 0.5;
+  text-color: inherit; 
+}
+
+element-text, element-icon {
+  background-color: inherit;
+}

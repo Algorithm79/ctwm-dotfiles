@@ -1,0 +1,85 @@
+[global]
+    ### --- Layout & Geometri ---
+    follow = mouse
+    width = 350
+    height = 300
+    
+    # Ändrad till bottom-center för att placera notiserna längst ner i mitten
+    origin = bottom-center
+    offset = 0x50
+    scale = 0
+    notification_limit = 0
+
+    ### --- CDE Stil (Skarpa hörn & Tjock ram) ---
+    progress_bar = true
+    progress_bar_height = 10
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+    
+    indicate_hidden = yes
+    transparency = 0
+    separator_height = 4
+    padding = 15
+    horizontal_padding = 15
+    text_icon_padding = 10
+    
+    # 0px tvingar fram 90-tals CDE-looken helt utan rundning
+    corner_radius = 0
+
+    ### --- Typsnitt & Centrering ---
+    font = CaskaydiaCove Nerd Font 11
+    line_height = 0
+    markup = full
+    format = "<b>%s</b>\n%b"
+    
+    # Centrerar all text i fönstret
+    alignment = center
+    vertical_alignment = center
+    
+    show_age_threshold = 60
+    word_wrap = yes
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+
+    ### --- Ikoner (Placerade till vänster) ---
+    enable_recursive_icon_lookup = true
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 48
+
+    ### --- Historik & System ---
+    sticky_history = yes
+    history_length = 20
+    dmenu = /usr/bin/dmenu -p dunst:
+    browser = /usr/bin/xdg-open
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+
+    ### --- Detaljerade raminställningar ---
+    # Den yttre fasta CDE-ramen (#292e38)
+    frame_width = 4
+    frame_color = "#e1e2e7"
+    separator_color = "#e1e2e7"
+
+[urgency_low]
+    background = "#e1e2e7"
+    foreground = "#343b58"
+    frame_color = "#e1e2e7"
+    timeout = 10
+
+[urgency_normal]
+    background = "#e1e2e7"
+    foreground = "#343b58"
+    frame_color = "#e1e2e7"
+    timeout = 15
+
+[urgency_critical]
+    background = "#e1e2e7"
+    foreground = "#f7768e" 
+    frame_color = "#e1e2e7"
+    timeout = 0
