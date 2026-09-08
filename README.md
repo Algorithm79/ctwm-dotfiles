@@ -5,3 +5,6 @@
 ## Essential stuff used in this config
 
 ctwm,rofi,dunst,xclock,stalonetray,kitty,feh,xscreensaver,blueman_applet,connman-gtk,caffeine,volumeicon
+
+GTK Theme: Tokyonight Light 
+Icons:Tela Pink Light
