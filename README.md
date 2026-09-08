@@ -5,7 +5,3 @@
 ## Essential stuff used in this config
 
 ctwm,rofi,dunst,xclock,stalonetray,kitty,feh,xscreensaver,blueman_applet,connman-gtk,caffeine,volumeicon
-
-Optional
-
-- [NvVhad](https://github.com/NvChad/NvChad) (neovim config)
