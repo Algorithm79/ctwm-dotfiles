@@ -1,16 +1,13 @@
 [global]
-    ### --- Layout & Geometri ---
     follow = mouse
     width = 350
     height = 300
     
-    # Ändrad till bottom-center för att placera notiserna längst ner i mitten
     origin = bottom-center
     offset = 0x50
     scale = 0
     notification_limit = 0
 
-    ### --- CDE Stil (Skarpa hörn & Tjock ram) ---
     progress_bar = true
     progress_bar_height = 10
     progress_bar_frame_width = 1
@@ -23,8 +20,6 @@
     padding = 15
     horizontal_padding = 15
     text_icon_padding = 10
-    
-    # 0px tvingar fram 90-tals CDE-looken helt utan rundning
     corner_radius = 0
 
     ### --- Typsnitt & Centrering ---
@@ -32,8 +27,6 @@
     line_height = 0
     markup = full
     format = "<b>%s</b>\n%b"
-    
-    # Centrerar all text i fönstret
     alignment = center
     vertical_alignment = center
     
@@ -45,13 +38,11 @@
     hide_duplicate_count = false
     show_indicators = yes
 
-    ### --- Ikoner (Placerade till vänster) ---
     enable_recursive_icon_lookup = true
     icon_position = left
     min_icon_size = 32
     max_icon_size = 48
 
-    ### --- Historik & System ---
     sticky_history = yes
     history_length = 20
     dmenu = /usr/bin/dmenu -p dunst:
@@ -59,9 +50,6 @@
     always_run_script = true
     title = Dunst
     class = Dunst
-
-    ### --- Detaljerade raminställningar ---
-    # Den yttre fasta CDE-ramen (#292e38)
     frame_width = 4
     frame_color = "#e1e2e7"
     separator_color = "#e1e2e7"

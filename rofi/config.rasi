@@ -18,7 +18,7 @@ configuration {
   
   /* CDE 3D-Skuggor anpassade för Tokyo Night */
   cde-high-light:              #ffffff; /* Ren vit för solljus-effekt (topp/vänster) */
-  cde-low-shadow:              #e1e2e7; /* Din önskade färg för den yttre ramen / skuggan (botten/höger) */
+  cde-low-shadow:              #e1e2e7; /* Färg för den yttre ramen / skuggan (botten/höger) */
 
   /* Markeringar (Klassisk Tokyo Night Blå) */
   selected-background:         #343b58; 
