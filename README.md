@@ -1,6 +1,6 @@
 # Dotfiles_i3
 
-![screenshot](https://raw.githubusercontent.com/Algorithm79/Dotfiles_i3/master/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/Algorithm79/ctwm-dotfiles/master/ctwm.png)
 
 ## Essential stuff used in this config
 
